@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -42,8 +44,8 @@
                         </li>
                         <li><a href="#">Công Cụ Cho nhà phát triển </a>
                             <ul>
-                                <li><a href="CURDMANGER.html">Phóng viên</a></li>
-                                <li><a href="CURDMANGER.html">Quản Trị</a></li>
+                                <li><a href="CURDMANGER.jsp">Phóng viên</a></li>
+                                <li><a href="CURDMANGER.jsp">Quản Trị</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -53,7 +55,7 @@
 						placeholder="Nội dung tìm kiếm" aria-label="Search">
 					<button class=" search" type="submit">Tìm</button>
 					
-						<a class="btn btn-primary" style="white-space: nowrap;" href="dangnhap.html">
+						<a class="btn btn-primary" style="white-space: nowrap;" href="dangky.jsp">
 							Đăng nhập
 						</a>
 				
@@ -63,10 +65,9 @@
 							data-bs-toggle="dropdown" aria-expanded="false"> Tài khoản</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="#">Thông báo</a></li>
-								<!-- <li><a class="dropdown-item" href="thaydoithongtin.jsp">Thay đổi thông tin</a></li> -->
-								<!-- <li><a class="dropdown-item" href="doimatkhau.jsp">Đổi mật khẩu</a></li> -->
+								 <li><a class="dropdown-item" href="dienvaluuthongtin.jsp">Thay đổi thông tin</a></li> 
 								<li><hr class="dropdown-divider"></li>
-								<!-- <li><a class="dropdown-item" href="dang-xuat1">Thoát tài khoản</a></li> -->
+								 <li><a class="dropdown-item" href="dang-xuat1">Thoát tài khoản</a></li> 
 							</ul></li>
 					</ul>				
 						

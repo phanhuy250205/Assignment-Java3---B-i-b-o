@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +33,7 @@
                         <img src="./assets/img/thethao1.jpg" alt="">
                     </div>
                     <div class="inner-content">
-                        <h1><a href="thethao.html">M.U - Tottenham: Quyết định chiếc ghế HLV Erik ten Hag</a></h1>
+                        <h1><a href="thethao.jsp">M.U - Tottenham: Quyết định chiếc ghế HLV Erik ten Hag</a></h1>
                         <p>Trận đấu giữa M.U gặp Tottenham lúc 22 giờ 30 ngày 29.9 (giờ VN) trên sân Old Trafford sẽ mang tính quyết định số phận chiếc ghế đang lung lay của HLV Erik ten Hag, theo kênh Sky Sports (Anh).</p>
                     </div>
                     

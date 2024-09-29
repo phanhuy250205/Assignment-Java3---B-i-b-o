@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +33,7 @@
                         <img src="./assets/img/phapluat1.jpg" alt="">
                     </div>
                     <div class="inner-content">
-                        <h1><a href="phapluat.html">Xét xử vụ thứ 2 giữa Công ty Sen Vàng và Bệnh viện thẩm mỹ Nam An</a></h1>
+                        <h1><a href="phapluat.jsp">Xét xử vụ thứ 2 giữa Công ty Sen Vàng và Bệnh viện thẩm mỹ Nam An</a></h1>
                         <p>Sáng mai (29.9), TAND Q.Bình Thạnh, TP.HCM sẽ xét xử sơ thẩm vụ kiện thứ 2 giữa
                              Bệnh viện thẩm mỹ Nam An và Công ty Sen Vàng liên quan đến giám khảo cuộc thi
                               Miss Grand International 2023 (Hoa hậu Hòa bình Quốc tế 2023).</p>
@@ -84,14 +86,7 @@
                 </div>
                 
             </div>
-            
-            
-            
-            
 
-            <!-- <div class=" box sliderbar-2">
-                Slider 2
-            </div> -->
             <div class="clear-fix"></div>
         </div>
         <div class="box footer">

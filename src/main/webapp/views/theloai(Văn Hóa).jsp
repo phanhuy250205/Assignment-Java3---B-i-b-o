@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +48,7 @@
                         <img src="./assets/img/vanhoa2.jpg" alt="">
                     </div>
                     <div class="inner-content">
-                        <h1><a href="vanhoa.html">Chuyện 'con nhà nòi' đóng phim</a></h1>
+                        <h1><a href="vanhoa.jsp">Chuyện 'con nhà nòi' đóng phim</a></h1>
                         <p> Gần đây, nhiều diễn viên trẻ là con của các nghệ sĩ nổi tiếng tham gia đóng phim, đang thu hút sự chú ý của khán giả.</p>
                     </div>
                 </div>

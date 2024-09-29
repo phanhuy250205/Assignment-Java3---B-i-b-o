@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +31,7 @@
 				<h2 class="form__title">Sign In</h2>
 				<input type="email" placeholder="Email" class="input" />
 				<input type="password" placeholder="Password" class="input" />
-				<a href="doimatkhau.html" class="link">Forgot your password?</a>
+				<a href="doimatkhau.jsp" class="link">Forgot your password?</a>
 				<button class="btn">Sign In</button>
 			</form>
 		</div>
