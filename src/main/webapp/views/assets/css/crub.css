@@ -1,0 +1,155 @@
+/* Container chính */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif; /* Font tiêu chuẩn dễ đọc */
+}
+
+/* Tiêu đề chính */
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2.5em; /* Tạo ấn tượng mạnh cho tiêu đề */
+    margin-bottom: 30px; /* Thêm khoảng cách dưới tiêu đề */
+}
+
+/* Tabs điều hướng */
+.tab {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab button {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px; /* Bo tròn nút */
+    font-weight: bold; /* Font mạnh cho các nút */
+    transition: background-color 0.3s; /* Hiệu ứng mượt khi hover */
+}
+
+/* Hiệu ứng hover cho nút tab */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #28a745; /* Màu nền nút khi active */
+    color: white; /* Màu chữ cho nút active */
+    border: none;
+}
+
+/* Nội dung tab hiển thị */
+.tabcontent {
+    display: none;
+}
+
+.tabcontent.active {
+    display: block; /* Hiện tab khi active */
+}
+
+/* Kiểu cho form */
+form input, form textarea {
+    padding: 10px;
+    margin: 10px 0;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Bo tròn input và textarea */
+    font-size: 1em;
+}
+
+form textarea {
+    height: 150px; /* Chiều cao cho textarea */
+    resize: vertical; /* Cho phép thay đổi chiều cao */
+}
+
+/* Kiểu cho các nút trong form */
+form button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px; /* Bo tròn nút */
+    font-size: 1em;
+}
+
+/* Hiệu ứng hover cho nút form */
+form button:hover {
+    background-color: #218838;
+}
+
+/* Bảng hiển thị CRUD */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse; /* Gộp các đường viền */
+    font-size: 1em; /* Tăng kích thước chữ cho bảng */
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Danh sách CRUD */
+.crud-list {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9; /* Màu nền nhẹ nhàng */
+    border-radius: 5px; /* Bo tròn khung danh sách */
+}
+
+/* Kiểu cho từng mục trong danh sách */
+.crud-list div {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Viền ngăn cách */
+    display: flex;
+    justify-content: space-between; /* Căn đều nội dung */
+}
+
+.crud-list div span {
+    flex: 1;
+    color: #333; /* Màu chữ */
+}
+
+/* Nút trong CRUD */
+.crud-list div button {
+    padding: 5px 10px;
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 3px; /* Bo tròn nút */
+}
+
+/* Hiệu ứng hover cho nút CRUD */
+.crud-list div button:hover {
+    background-color: #e0a800;
+}
+
+/* Nút xóa */
+.crud-list div button:last-child {
+    background-color: #dc3545; /* Màu đỏ cho nút xóa */
+}
+
+.crud-list div button:last-child:hover {
+    background-color: #c82333; /* Màu khi hover */
+}

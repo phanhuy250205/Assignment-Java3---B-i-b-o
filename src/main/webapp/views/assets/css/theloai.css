@@ -1,0 +1,88 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.box {
+    margin: 20px;
+}
+
+.header {
+    background-color: white;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+
+
+/* Main layout */
+.main {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.slidebar-1, .article {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    flex: 1;
+    margin-right: 20px;
+}
+
+.article {
+    flex: 3;
+}
+
+.slidebar-1 {
+    margin-right: 0; /* Adjusting margin for proper spacing */
+}
+
+.innerbox-2 {
+    background-color: #fff;
+    margin-bottom: 20px; /* Added space between inner boxes */
+    padding: 15px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.innerbox-2 img {
+    max-width: 150px;
+    margin-right: 20px;
+    border-radius: 6px;
+}
+
+.inner-content h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.inner-content p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+.clear-fix {
+    clear: both;
+}
+.inner-box .inner-logo img{
+    width: 100%;
+
+}
