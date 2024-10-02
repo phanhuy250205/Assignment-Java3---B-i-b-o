@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-:root{
-    --color-one:#FF8484;
-    --color-two:#F7D9C4;
-    --color-text:#232323; 
-    --gb-1:#EFEFEF; 
-    --gb-2:#DCEBEB; 
-    
-}
+
 body{
   
     margin: 0; 
@@ -15,6 +8,13 @@ body{
 }
 a{
     text-decoration: none;
+}
+.btn{
+    background-color: rgb(23, 97, 209);
+    padding: 10px;
+    color: black;
+    border-radius: 5px;
+    font-size: 1.2rem;
 }
 .container{
     width: 100%;

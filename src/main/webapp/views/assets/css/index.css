@@ -215,6 +215,7 @@
   padding: 10px 0;
   font-family: 'Arial', sans-serif;
   position: relative;
+  background-color: #333;
  
 }
 
@@ -234,7 +235,7 @@
 #primary_nav_wrap ul li a {
   display: block;
   padding: 10px 20px;
-  color: black;
+  color: white;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
@@ -244,7 +245,7 @@
 #primary_nav_wrap ul li a:hover, 
 #primary_nav_wrap ul li.current-menu-item a {
 /*     background-color: #444; */
-  color: black;
+  color: white;
   border-radius: 5px;
 }
 
@@ -274,6 +275,7 @@
   padding: 10px 20px;
   font-size: 14px;
   white-space: nowrap;
+  background-color: #d5cece;
 }
 
 #primary_nav_wrap ul ul li a:hover {
@@ -329,6 +331,7 @@
   background-color: #9723d1cb;
   border-radius: 5px;
   border: none;
+  color: white;
 }
 .btn-primary:hover::after{
   left: 0;

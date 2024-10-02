@@ -2,9 +2,13 @@ package JDBC;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import Dao.usedao;
+import model.Users;
 
 
 
@@ -56,6 +60,33 @@ public class jdbc {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
+    }
+    public static void main(String[] args) {
+        // Tạo một đối tượng usedao để gọi các phương thức từ DAO
+        usedao userDao = new usedao();
+        
+        // Tạo dữ liệu cho người dùng mới
+        String userId = "U011"; // Giá trị giả định, bạn có thể thay đổi
+        String email = "example@example.com";
+        String password = "password123";
+        boolean role = false; // False là user bình thường, true là admin (tùy theo logic của bạn)
+        String fullName = "John Doe";
+        Date birthday = new Date(0); // Lấy ngày hiện tại, bạn có thể thay đổi theo nhu cầu
+        boolean gender = true; // True là nam, False là nữ
+        String mobile = "0123456789";
+
+        // Tạo đối tượng user mới
+        Users newUser = new Users(userId, email, password, role, fullName, new java.sql.Date(birthday.getTime()), gender, mobile, mobile);
+        
+        // Gọi phương thức insert từ usedao
+        int rowsInserted = userDao.insert(newUser);
+        
+        // Kiểm tra kết quả
+        if (rowsInserted > 0) {
+            System.out.println("User đã được thêm thành công!");
+        } else {
+            System.out.println("Thêm User thất bại!");
+        }
     }
     
 }

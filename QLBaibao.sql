@@ -6,14 +6,15 @@ CREATE TABLE CATEGORIES(
 
 -- Tạo bảng Users để lưu thông tin người dùng (quản trị viên và phóng viên)
 CREATE TABLE Users(
-    Id NVARCHAR(40) PRIMARY KEY,   -- Khóa chính, mã người dùng
-    password NVARCHAR(50),         -- Mật khẩu của người dùng
-    Fullname NVARCHAR(50),         -- Họ và tên đầy đủ
-    Birthday DATE,                 -- Ngày sinh
-    Gender BIT,                    -- Giới tính (1 cho nam, 0 cho nữ)
-    Mobile NVARCHAR(50),           -- Số điện thoại di động
-    Email NVARCHAR(50) UNIQUE,     -- Địa chỉ email (duy nhất)
-    Role BIT                       -- Vai trò (1 cho quản trị viên, 0 cho phóng viên)
+    Id NVARCHAR(40) PRIMARY KEY , 
+    Email NVARCHAR(50) UNIQUE,  
+    password NVARCHAR(50),
+     Role BIT ,       
+    Fullname NVARCHAR(50),        
+    Birthday DATE,                 
+    Gender BIT,                    
+    Mobile NVARCHAR(50),         
+  
 );
 
 -- Tạo bảng News để lưu thông tin bài viết
@@ -37,29 +38,54 @@ CREATE TABLE NEWSLETTERS(
     Enabled BIT                     -- Trạng thái hiệu lực (1 nếu còn hiệu lực, 0 nếu không)
 );
 
+
 INSERT INTO CATEGORIES (Id, Name) VALUES
-('C1', 'Tin Tức'),
-('C2', 'Giải Trí'),
+('C01', 'Sports'),
+('C02', 'Technology'),
+('C03', 'Health'),
+('C04', 'Politics'),
+('C05', 'Entertainment');
 
-('C3', 'Thể Thao'),
-('C4', 'Kinh Doanh');
+INSERT INTO Users (Id, Email, Password, Role, Fullname, Birthday, Gender, Mobile) VALUES
+('U01', 'admin@example.com', 'admin123', 1, 'Admin User', '1980-01-01', 1, '0123456789'),
+('U02', 'reporter1@example.com', 'reporter123', 0, 'Reporter One', '1990-05-15', 1, '0987654321'),
+('U03', 'reporter2@example.com', 'reporter123', 0, 'Reporter Two', '1985-10-25', 0, '0765432198');
 
-
-INSERT INTO Users (Id, password, Fullname, Birthday, Gender, Mobile, Email, Role) VALUES
-('U1', 'password123', 'Nguyễn Văn A', '1990-01-01', 1, '0912345678', 'vana@example.com', 0),
-('U2', 'password456', 'Trần Thị B', '1985-05-05', 0, '0987654321', 'thib@example.com', 1),
-('U3', 'password789', 'Lê Văn C', '1992-10-10', 1, '0923456789', 'vanc@example.com', 0);
-
-
-INSERT INTO News (Id, title, content, Image, PostedDate, Author, ViewCount, CategoryId, Home) VALUES
-('N1', 'Tin tức mới nhất', 'Nội dung tin tức mới nhất...', 'image1.jpg', '2024-09-21', 'U1', 100, 'C1', 1),
-('N2', 'Sự kiện thể thao', 'Nội dung sự kiện thể thao...', 'image2.jpg', '2024-09-20', 'U1', 200, 'C3', 0),
-('N3', 'Giải trí cuối tuần', 'Nội dung giải trí cuối tuần...', 'image3.jpg', '2024-09-19', 'U2', 150, 'C2', 1),
-('N4', 'Cập nhật kinh doanh', 'Nội dung cập nhật kinh doanh...', 'image4.jpg', '2024-09-18', 'U3', 250, 'C4', 0);
-
+INSERT INTO News (Id, Title, Content, Image, PostedDate, Author, ViewCount, CategoryId, Home) VALUES
+('N01', 'Exciting Sports Event', 'Details about the exciting sports event happening this weekend.', 'image1.jpg', '2024-10-01', 'U02', 150, 'C01', 1),
+('N02', 'Tech Innovations', 'Latest innovations in technology that are changing the world.', 'image2.jpg', '2024-10-02', 'U03', 250, 'C02', 0),
+('N03', 'Health Tips', 'Important health tips for a better lifestyle.', 'image3.jpg', '2024-10-03', 'U02', 300, 'C03', 0),
+('N04', 'Political News', 'Latest updates on political events.', 'image4.jpg', '2024-10-04', 'U03', 400, 'C04', 1),
+('N05', 'Entertainment News', 'What’s new in the world of entertainment.', 'image5.jpg', '2024-10-05', 'U02', 500, 'C05', 0);
 
 
-INSERT INTO NEWSLETTERS (Email, Enabled) VALUES ('john.doe@example.com', 1);
-INSERT INTO NEWSLETTERS (Email, Enabled) VALUES ('jane.smith@example.com', 1);
+INSERT INTO NEWSLETTERS (Email, Enabled) VALUES
+('subscriber1@example.com', 1),
+('subscriber2@example.com', 1),
+('subscriber3@example.com', 0),
+('subscriber4@example.com', 1);
+
+
+DELETE FROM CATEGORIES
 
 SELECT * from CATEGORIES
+SELECT * FROM Users
+INSERT INTO CATEGORIES(Id , Name) VALUES('C10', 'Tin Tức')
+
+UPDATE  CATEGORIES 
+set Name = 'TT'
+WHERE Id  = 'C1'
+
+UPDATE Users
+SET  Email = ? , password = ? , Role = ? , Fullname = ?  , Birthday = ? , Gender = ? , Mobile = ?
+WHERE Id = ?
+
+INSERT INTO Users (Id, password, Fullname, Birthday, Gender, Mobile, Email, Role)
+
+
+ALTER TABLE Users
+ADD hinh VARCHAR(Max);
+
+SELECT * from Users
+
+SELECT * FROM Users WHERE Email='admin@example.com'

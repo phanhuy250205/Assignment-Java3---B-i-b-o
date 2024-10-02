@@ -4,27 +4,30 @@ import java.util.Date;
 
 public class Users {
 	private String Id;
-	private String password;
-	private String Fullname;
+	private String Email;
+	private String password ;
+	private boolean Role;
+	private String fullName;
 	private Date Birthday;
 	private boolean Gender;
 	private String  Mobile;
-	private String Email;
-	private boolean Role;
+	
+	private String Hinh;
 	public Users() {
 		
 	}
-	public Users(String id, String password, String fullname, Date birthday, boolean gender, String mobile,
-			String email, boolean role) {
-		
+	public Users(String id, String email, String password, boolean role, String fullName, Date birthday, boolean gender,
+			String mobile, String hinh) {
+		super();
 		Id = id;
+		Email = email;
 		this.password = password;
-		Fullname = fullname;
+		Role = role;
+		this.fullName = fullName;
 		Birthday = birthday;
 		Gender = gender;
 		Mobile = mobile;
-		Email = email;
-		Role = role;
+		Hinh = hinh;
 	}
 	public String getId() {
 		return Id;
@@ -32,17 +35,29 @@ public class Users {
 	public void setId(String id) {
 		Id = id;
 	}
+	public String getEmail() {
+		return Email;
+	}
+	public void setEmail(String email) {
+		Email = email;
+	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getFullname() {
-		return Fullname;
+	public boolean isRole() {
+		return Role;
 	}
-	public void setFullname(String fullname) {
-		Fullname = fullname;
+	public void setRole(boolean role) {
+		Role = role;
+	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 	public Date getBirthday() {
 		return Birthday;
@@ -62,25 +77,19 @@ public class Users {
 	public void setMobile(String mobile) {
 		Mobile = mobile;
 	}
-	public String getEmail() {
-		return Email;
+	public String getHinh() {
+		return Hinh;
 	}
-	public void setEmail(String email) {
-		Email = email;
-	}
-	public boolean isRole() {
-		return Role;
-	}
-	public void setRole(boolean role) {
-		Role = role;
+	public void setHinh(String hinh) {
+		Hinh = hinh;
 	}
 	@Override
 	public String toString() {
-		return "Users [Id=" + Id + ", password=" + password + ", Fullname=" + Fullname + ", Birthday=" + Birthday
-				+ ", Gender=" + Gender + ", Mobile=" + Mobile + ", Email=" + Email + ", Role=" + Role + "]";
+		return "Users [Id=" + Id + ", Email=" + Email + ", password=" + password + ", Role=" + Role + ", fullName="
+				+ fullName + ", Birthday=" + Birthday + ", Gender=" + Gender + ", Mobile=" + Mobile + ", Hinh=" + Hinh
+				+ "]";
 	}
 	
-	
-	
+
 	
 }

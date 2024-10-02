@@ -9,4 +9,44 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>dangky</display-name>
+    <servlet-name>dangky</servlet-name>
+    <servlet-class>Controller.dangky</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dangky</servlet-name>
+    <url-pattern>/dangky</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>Controller.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Logiin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>index</display-name>
+    <servlet-name>index</servlet-name>
+    <servlet-class>Controller.index</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/Home</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Dangxuat</display-name>
+    <servlet-name>Dangxuat</servlet-name>
+    <servlet-class>Controller.Dangxuat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Dangxuat</servlet-name>
+    <url-pattern>/Thoat</url-pattern>
+  </servlet-mapping>
 </web-app>
