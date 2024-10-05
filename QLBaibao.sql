@@ -84,8 +84,15 @@ INSERT INTO Users (Id, password, Fullname, Birthday, Gender, Mobile, Email, Role
 
 
 ALTER TABLE Users
-ADD hinh VARCHAR(Max);
+ADD image VARCHAR(Max);
 
-SELECT * from Users
-
+SELECT * from Users  
 SELECT * FROM Users WHERE Email='admin@example.com'
+
+
+UPDATE Users SET password='111' WHERE Email='phanhuy51231@gmail.com'
+
+UPDATE Users SET Email='phanhuy5@gmail.com', Fullname='Phan A Huy', Birthday='2025-10-03', Gender=1, Mobile='0775402144' WHERE Id='1727859067891_200'
+
+
+delete from Users where  Id = '1728065899635_954'

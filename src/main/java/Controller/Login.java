@@ -36,8 +36,8 @@ public class Login extends HttpServlet {
 
         // Tạo đối tượng người dùng để xác thực
         Users user = new Users();
-        user.setEmail(email);
-        user.setPassword(password);
+        user.setemail(email);
+        user.setpassword(password);
 
         usedao userDao = new usedao();
         // Kiểm tra người dùng và xác thực
@@ -48,7 +48,7 @@ public class Login extends HttpServlet {
             // Người dùng đã xác thực
             HttpSession session = request.getSession();
             session.setAttribute("khachHang", authenticatedUser); // Lưu đối tượng người dùng vào session
-            System.out.println("Đăng nhập thành công cho: " + authenticatedUser.getEmail()); // In ra email đã đăng nhập
+            System.out.println("Đăng nhập thành công cho: " + authenticatedUser.getemail()); // In ra email đã đăng nhập
             url = "/views/index.jsp"; // Chuyển hướng đến trang index
         } else {
             // Xác thực không thành công

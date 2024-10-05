@@ -11,23 +11,13 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>dangky</display-name>
-    <servlet-name>dangky</servlet-name>
-    <servlet-class>Controller.dangky</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>dangky</servlet-name>
-    <url-pattern>/dangky</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>Login</display-name>
     <servlet-name>Login</servlet-name>
     <servlet-class>Controller.Login</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
-    <url-pattern>/Logiin</url-pattern>
+    <url-pattern>/Login</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -48,5 +38,35 @@
   <servlet-mapping>
     <servlet-name>Dangxuat</servlet-name>
     <url-pattern>/Thoat</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DangKy</display-name>
+    <servlet-name>DangKy</servlet-name>
+    <servlet-class>Controller.DangKy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DangKy</servlet-name>
+    <url-pattern>/Signup</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Doimatkhau</display-name>
+    <servlet-name>Doimatkhau</servlet-name>
+    <servlet-class>Controller.Doimatkhau</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Doimatkhau</servlet-name>
+    <url-pattern>/matkhau</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CapNhatthongtin</display-name>
+    <servlet-name>CapNhatthongtin</servlet-name>
+    <servlet-class>Controller.CapNhatthongtin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CapNhatthongtin</servlet-name>
+    <url-pattern>/Suathongtin</url-pattern>
   </servlet-mapping>
 </web-app>

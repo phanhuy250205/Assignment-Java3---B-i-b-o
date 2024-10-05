@@ -2,11 +2,13 @@ package Controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Users;
+import until.Email;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -14,95 +16,106 @@ import java.util.Random;
 
 import Dao.usedao;
 
-@WebServlet(urlPatterns = {"/DangKy"})
-public class dangky extends HttpServlet {
+@MultipartConfig
+@WebServlet("/DangKy") // Đảm bảo servlet được ánh xạ đúng URL
+public class DangKy extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public dangky() {
+    public DangKy() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Lấy giá trị từ form
-        String email = request.getParameter("Email");
-        String password = request.getParameter("password");
-        String matKhauNhapLai = request.getParameter("matKhauNhapLai");
-        String role = request.getParameter("Role");
-        String fullname = request.getParameter("Fullname");
-        String birthdayStr = request.getParameter("Birthday");
-        String genderStr = request.getParameter("gioitinh");
-        String Mobile = request.getParameter("Mobile");
-        String hinh = request.getParameter("hinh");
-        
+        // Lấy dữ liệu từ form đăng ký
+        String email = request.getParameter("email");
+        String pass = request.getParameter("pass");
+        String cpass = request.getParameter("cpass");
+        String role = request.getParameter("role");
+        String fullname = request.getParameter("fullname");
+        String birthday = request.getParameter("birthday");
+        String gender = request.getParameter("gender");
+        String mobile = request.getParameter("mobile");
+
+        // Hiển thị thông tin để kiểm tra
         System.out.println("Email: " + email);
-        System.out.println("Password: " + password);
-        System.out.println("Confirm Password: " + matKhauNhapLai);
-        System.out.println("Role: " + role);
-        System.out.println("Full Name: " + fullname);
-        System.out.println("Birthday: " + birthdayStr);
-        System.out.println("Gender: " + genderStr);
-        System.out.println("Mobile: " + Mobile);
-        System.out.println("Mobile: " + hinh);
-        
-        // Đưa thông tin vào request để sử dụng lại
+        System.out.println("Mật khẩu: " + pass);
+        System.out.println("Vai trò: " + role);
+        System.out.println("Họ và tên: " + fullname);
+        System.out.println("Ngày sinh: " + birthday);
+        System.out.println("Giới tính: " + gender);
+        System.out.println("Số điện thoại: " + mobile);
+
+        // Lưu các thông tin người dùng nhập vào request để sử dụng lại nếu có lỗi
         request.setAttribute("email", email);
         request.setAttribute("role", role);
         request.setAttribute("fullname", fullname);
-        request.setAttribute("birthday", birthdayStr);
-        request.setAttribute("gender", genderStr);
-        request.setAttribute("phone", Mobile);
-        request.setAttribute("phone", hinh);
+        request.setAttribute("birthday", birthday);
+        request.setAttribute("gender", gender);
+        request.setAttribute("phone", mobile);
 
-        String url = "/views/dangky.jsp"; // Default URL
-        String errorMessage = "";
-
+        String url = "/views/dangky.jsp"; // URL mặc định quay lại trang đăng ký
+        StringBuilder errorMessage = new StringBuilder();
         usedao userDao = new usedao();
 
-        // Kiểm tra email đã tồn tại chưa
+        // Kiểm tra email đã tồn tại
         if (userDao.checkUsernameExists(email)) {
-            errorMessage += "Email đã tồn tại, vui lòng nhập email khác.<br/>";
+//            errorMessage.append("Email đã tồn tại, vui lòng nhập email khác.<br/>");
+            request.setAttribute("baoLoi", "Email đã tồn tại, vui lòng nhập email khác.<br/>");
         }
 
-        // Kiểm tra mật khẩu và mật khẩu nhập lại
-        if (password == null || password.isEmpty() || !password.equals(matKhauNhapLai)) {
-            errorMessage += "Mật khẩu nhập lại không khớp hoặc không hợp lệ.<br/>";
+        // Kiểm tra mật khẩu
+        if (pass == null || pass.isEmpty() || !pass.equals(cpass)) {
+//            request.setAttribute("baoLoi", "Mật Khẩu Nhập Lại Không Hợp Lệ");
         }
 
         // Kiểm tra ngày sinh
-        Date birthday = null;
+        Date birthday1 = null;
         try {
-            birthday = Date.valueOf(birthdayStr);
+            birthday1 = Date.valueOf(birthday); // Chuyển đổi chuỗi ngày sinh sang kiểu Date
         } catch (IllegalArgumentException e) {
-            errorMessage += "Ngày sinh không hợp lệ.<br/>";
+//        	request.setAttribute("baoLoi", "Ngày Sinh Không Hợp lệ ");
         }
 
-        // Nếu có lỗi, quay lại trang đăng ký
-        if (!errorMessage.isEmpty()) {
-            request.setAttribute("errorMessage", errorMessage);
+        // Kiểm tra các lỗi nhập liệu
+        if (errorMessage.length() > 0) {
+        	request.setAttribute("baoLoi", "Bạn Không Được Để Trống");
         } else {
-            // Nếu không có lỗi, tiến hành đăng ký
-            String id = String.valueOf(System.currentTimeMillis()) + "_" + new Random().nextInt(1000); // More robust ID
-            Users user = new Users(id, email, password, true, fullname, birthday, true, Mobile, hinh); // Assuming 'hinh' is not used
+            // Không có lỗi, tiến hành tạo người dùng mới
+            String id = String.valueOf(System.currentTimeMillis()) + "_" + new Random().nextInt(1000); // Tạo ID duy nhất
+            boolean isAdmin = "1".equals(role); // Vai trò admin hoặc nhân viên
 
-            // Ghi vào database
+            // Tạo đối tượng người dùng mới
+            Users user = new Users(id, email, pass, isAdmin, fullname, birthday1, "Nữ".equals(gender), mobile, null); // Không gán hình ảnh
+
+            // Ghi người dùng vào cơ sở dữ liệu
             int result = userDao.insert(user);
-            System.out.println("Thêm Thành Công");
             if (result > 0) {
-                // Redirect to a success page or login page
-                response.sendRedirect(request.getContextPath() + "/login.jsp");
-                return; // Stop further processing
+                // Nếu thành công, chuyển hướng tới trang đăng nhập
+            	String tieuDe =  "Chào mừng"+fullname+" bạn!\n\n" +
+                        "Tôi là Admin của trang web Báo số 1 Việt Nam. Chúng tôi rất vinh hạnh chào đón bạn đến với trang web của chúng tôi.\n\n" +
+                        "Tại đây, bạn sẽ tìm thấy những thông tin cập nhật và tin tức mới nhất về nhiều lĩnh vực khác nhau. Chúng tôi cam kết cung cấp cho bạn những nội dung chất lượng và hữu ích nhất.\n\n" +
+                        "Nếu bạn có bất kỳ câu hỏi nào hoặc cần hỗ trợ, đừng ngần ngại liên hệ với chúng tôi.\n\n" +
+                        "Chúc bạn có trải nghiệm tuyệt vời tại trang web của chúng tôi!\n\n" +
+                        "Trân trọng,\n" +
+                        "Đội ngũ Admin"; 
+            	 String noiDung = "Chào Mừng bạn! Tôi là Admin của trang Web Báo số 1 Việt Nam. Chúng tôi rất vinh hạnh chào đón bạn đến với trang web của chúng tôi.";
+            	 Email.sendEmail(email, tieuDe, noiDung);
+                response.sendRedirect(request.getContextPath() + "/views/dangnhap.jsp");
+                return;
             } else {
-                errorMessage += "Đăng ký không thành công, vui lòng thử lại.<br/>";
-                request.setAttribute("errorMessage", errorMessage);
+//            	request.setAttribute("baoLoi", "Đăng Nhập Không thành công vui lòng thử lại sau ");
+                request.setAttribute("errorMessage", errorMessage.toString());
             }
         }
+        
+        
 
-        // Chuyển hướng tới trang tương ứng
+        // Nếu có lỗi, hoặc đăng ký thất bại, quay lại trang đăng ký
         RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
         rd.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+        doGet(request, response); // Xử lý POST như GET
     }
 }

@@ -44,15 +44,16 @@
 					<nav id="primary_nav_wrap">
 						<ul>
 							<li class="current-menu-item"><a href="#">Home</a></li>
-							<li><a href="theloai(Thể Thao).jsp">Thể Thao </a></li>
-							<li><a href="theloai(Văn Hóa).html">Văn Hóa</a></li>
-							<li><a href="theloai(Pháp Luật) .html">Phát Luật</a></li>
+							<li><a href="/ASM_JAVA3_PD10267/views/theloai(Thể Thao).jsp">Thể Thao </a></li>
+							<li><a href="/ASM_JAVA3_PD10267/views/theloai(Văn Hóa).jsp">Văn Hóa</a></li>
+							<li><a href="/ASM_JAVA3_PD10267/views/theloai(Pháp Luật) .jsp">Phát Luật</a></li>
 							<li><a href="#">Công Cụ Cho nhà phát triển </a>
 								<ul>
-									<li><a href="CURDMANGER.jsp">Phóng viên</a></li>
-									<li><a href="CURDMANGER.jsp">Quản Trị</a></li>
+									<li><a href="/ASM_JAVA3_PD10267/views/CURDMANGER.jsp">Phóng viên</a></li>
+									<li><a href="/ASM_JAVA3_PD10267/views/CURDMANGER.jsp">Quản Trị</a></li>
 								</ul></li>
 						</ul>
+						
 
 						<%
 						// Lấy đối tượng người dùng từ session
@@ -74,11 +75,11 @@
 							%>
 							<!-- Nếu người dùng chưa đăng nhập, hiển thị nút đăng nhập -->
 							<a class="btn btn-primary" style="white-space: nowrap;"
-								href="dangnhap.jsp"> Đăng nhập </a>
+								href="/ASM_JAVA3_PD10267/views/dangnhap.jsp"> Đăng nhập </a>
 							<%
 							} else {
 							%>
-							<!-- Nếu người dùng đã đăng nhập, hiển thị menu tài khoản -->
+							<!-- Nếu người dùng đã đăng nhập, hiển thị menu tài khoản  nút đăng nhập sẽ bị ẩn -->
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0 bg-infor">
 								<li class="nav-item dropdown dropstart"><a
 									class="nav-link dropdown-toggle" href="#" role="button"
@@ -86,9 +87,9 @@
 								</a>
 									<ul class="dropdown-menu">
 										<li><a class="dropdown-item" href="#">Thông báo</a></li>
-										<li><a class="dropdown-item" href="thaydoithongtin.jsp">Thay
+										<li><a class="dropdown-item" href="/ASM_JAVA3_PD10267/views/Capnhapthonghtin.jsp">Thay
 												đổi thông tin</a></li>
-										<li><a class="dropdown-item" href="doimatkhau.jsp">Đổi
+										<li><a class="dropdown-item" href="/ASM_JAVA3_PD10267/views/doimatkhau.jsp">Đổi
 												mật khẩu</a></li>
 										<li><hr class="dropdown-divider"></li>
 										<li><a class="dropdown-item" href="out">Thoát

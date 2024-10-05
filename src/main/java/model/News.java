@@ -36,49 +36,49 @@ public class News {
 	public void setId(String id) {
 		Id = id;
 	}
-	public String getTitle() {
+	public String gettitle() {
 		return title;
 	}
-	public void setTitle(String title) {
+	public void settitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
+	public String getcontent() {
 		return content;
 	}
-	public void setContent(String content) {
+	public void setcontent(String content) {
 		this.content = content;
 	}
-	public String getImage() {
+	public String getimage() {
 		return Image;
 	}
-	public void setImage(String image) {
+	public void setimage(String image) {
 		Image = image;
 	}
-	public Date getPostedDate() {
+	public Date getpostedDate() {
 		return PostedDate;
 	}
-	public void setPostedDate(Date postedDate) {
+	public void setpostedDate(Date postedDate) {
 		PostedDate = postedDate;
 	}
-	public String getAuthor() {
+	public String getauthor() {
 		return Author;
 	}
 	public void setAuthor(String author) {
 		Author = author;
 	}
-	public int getViewCount() {
+	public int getviewcount() {
 		return ViewCount;
 	}
-	public void setViewCount(int viewCount) {
+	public void setviewcount(int viewCount) {
 		ViewCount = viewCount;
 	}
-	public String getCategoryId() {
+	public String getcategoryId() {
 		return CategoryId;
 	}
 	public void setCategoryId(String categoryId) {
 		CategoryId = categoryId;
 	}
-	public boolean isHome() {
+	public boolean ishome() {
 		return Home;
 	}
 	public void setHome(boolean home) {

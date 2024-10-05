@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,37 +8,72 @@
     <link rel="stylesheet" href="./assets/css/doimatkhau.css">
 </head>
 <body>
+<%
+String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+%>
     <div class="mainDiv">
         <div class="cardStyle">
-          <form action="" method="post" name="signupForm" id="signupForm">
+          <!-- Form đổi mật khẩu -->
+          <form action=<%=url%>/matkhau method="post" name="signupForm" id="signupForm">
             
-            <img src="" id="signupLogo"/>
+            <h2 class="formTitle">Đổi mật khẩu</h2>
             
-            <h2 class="formTitle">
-              Login to your account
-            </h2>
+            <!-- Hiển thị thông báo lỗi hoặc thành công -->
+            <div>
+                <% String error = (String) request.getAttribute("error"); %>
+                <% String message = (String) request.getAttribute("message"); %>
+                
+                <!-- Nếu có thông báo lỗi thì hiển thị -->
+                <% if (error != null) { %>
+                    <div style="color: red;"><%= error %></div>
+                <% } %>
+                
+                <!-- Nếu có thông báo thành công thì hiển thị -->
+                <% if (message != null) { %>
+                    <div style="color: green;"><%= message %></div>
+                <% } %>
+            </div>
+
+            <!-- Các trường nhập thông tin -->
             <div class="inputDiv">
-                <label class="inputLabel" for="password">Enter old password</label>
-                <input type="password" id="password" name="password" required>
-              </div>
-          <div class="inputDiv">
-            <label class="inputLabel" for="password">New Password</label>
-            <input type="password" id="password" name="password" required>
-          </div>
+                <label class="inputLabel" for="email">Gmail Của Bạn</label>
+                <input type="email" id="email" name="email" required>
+            </div>
             
-          <div class="inputDiv">
-            <label class="inputLabel" for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword">
-          </div>
-          
-          <div class="buttonWrapper">
-            <button type="submit" id="submitButton" onclick="validateSignupForm()" class="submitButton pure-button pure-button-primary">
-              <span>Continue</span>   
-            </button>
-          </div>
+            <div class="inputDiv">
+                <label class="inputLabel" for="matkhaucu">Mật Khẩu Cũ Của Bạn</label>
+                <input type="password" id="matkhaucu" name="matkhaucu" required>
+            </div>
             
-        </form>
+            <div class="inputDiv">
+                <label class="inputLabel" for="matkhaumoi">Mật Khẩu Mới Của Bạn</label>
+                <input type="password" id="matkhaumoi" name="matkhaumoi" required>
+            </div>
+            
+            <div class="inputDiv">
+                <label class="inputLabel" for="nhaplaimatkhau">Nhập Lại Mật Khẩu</label>
+                <input type="password" id="nhaplaimatkhau" name="nhaplaimatkhau" required>
+            </div>
+            
+            <div class="buttonWrapper">
+                <button type="submit" class="submitButton pure-button pure-button-primary">
+                    Tiếp tục  
+                </button>
+            </div>
+            
+          </form>
         </div>
       </div>
+      <script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+        var matkhaumoi = document.getElementById("matkhaumoi").value;
+        var nhaplaimatkhau = document.getElementById("nhaplaimatkhau").value;
+
+        if (matkhaumoi !== nhaplaimatkhau) {
+            alert("Mật khẩu mới và xác nhận mật khẩu không khớp.");
+            event.preventDefault(); // Ngăn không cho gửi biểu mẫu
+        }
+    });
+</script>
 </body>
 </html>
