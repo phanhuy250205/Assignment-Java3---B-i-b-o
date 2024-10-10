@@ -1,29 +1,34 @@
 package model;
 
 public class NEWSLETTERS {
-	private String email;
+    private String email;
+    private boolean enabled;
 
-	public NEWSLETTERS() {
-		
-	}
+    // Constructor không tham số
+    public NEWSLETTERS() {
+    }
 
-	public NEWSLETTERS(String email) {
-		super();
-		this.email = email;
-	}
+    // Constructor có tham số
+    public NEWSLETTERS(String email, boolean enabled) {
+        this.email = email;
+        this.enabled = enabled;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    // Getter và Setter cho email
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	@Override
-	public String toString() {
-		return "NEWSLETTERS [email=" + email + "]";
-	}
-	
-	
+    // Getter và Setter cho enabled
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 }

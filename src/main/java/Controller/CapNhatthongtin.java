@@ -1,19 +1,21 @@
 package Controller;
 
 import java.io.IOException;
-import java.sql.Date;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import Dao.usedao;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Users;
-
+@MultipartConfig
 @WebServlet("/CapNhatthongtinn")
 public class CapNhatthongtin extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -28,18 +30,20 @@ public class CapNhatthongtin extends HttpServlet {
         String birthday = request.getParameter("birthday"); // Có thể null hoặc rỗng
         String gender = request.getParameter("gender");
         String mobile = request.getParameter("mobile");
-
+        String image = request.getParameter("image");
         System.out.println("Email: " + email);
         System.out.println("Họ và tên: " + fullname);
         System.out.println("Ngày sinh: " + birthday);
         System.out.println("Giới tính: " + gender);
         System.out.println("Số điện thoại: " + mobile);
+        System.out.println("Số điện thoại: " + image);
 
         request.setAttribute("email", email);
         request.setAttribute("fullname", fullname);
         request.setAttribute("birthday", birthday);
         request.setAttribute("gender", gender);
         request.setAttribute("mobile", mobile);
+        request.setAttribute("image", image);
 
         String url = "";
         String baoLoi = "";
@@ -78,10 +82,10 @@ public class CapNhatthongtin extends HttpServlet {
                 url = "/views/index.jsp";
             } else {
                 request.setAttribute("baoLoi", baoLoi);
-                url = "/views/Capnhapthonghtin.jsp";
+                url = "/views/Login/Capnhapthonghtin.jsp";
             }
         } else {
-            url = "/views/Capnhapthonghtin.jsp"; // Nếu không tìm thấy người dùng
+            url = "/views/Login/Capnhapthonghtin.jsp"; // Nếu không tìm thấy người dùng
         }
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher(url);

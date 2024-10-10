@@ -6,103 +6,181 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import JDBC.jdbc;
 import model.News;
-import model.Users;
 
 public class Newsdao {
-	public ArrayList<News> selectAll() {
-		ArrayList<News> result = new ArrayList<News>();
-		String sql = "select * from News";
-		try (Connection con = jdbc.getConnection();
-				PreparedStatement st = con.prepareStatement(sql);
-				ResultSet rs = st.executeQuery();) {
 
-			while (rs.next()) {
-				String Id = rs.getString("Id");
-				String title = rs.getString("title");
-				String content = rs.getString("content");
-				String Image = rs.getString("Image");
-				Date PostDate = rs.getDate("PostDate"); // Ngày Đăng
-				String Author = rs.getString("Author");
-				int ViewCount = rs.getInt("ViewCount");// Số lượt xem
-				String CategoryId = rs.getString("CategoryId");// Mã loại tin (liên kết với bảng CATEGORIES)
-				boolean BIT = rs.getBoolean("BIT");
+    // Lấy tất cả các tin tức
+    public ArrayList<News> selectAll() {
+        ArrayList<News> result = new ArrayList<>();
+        String sql = "SELECT * FROM News";
 
-				News news = new News(Id, title, content, Image, PostDate, Author, ViewCount, CategoryId, BIT);
-				result.add(news);
-			}
-		} catch (Exception e) {
+        System.out.println("Executing SQL: " + sql);
+        try (Connection con = jdbc.getConnection();
+             PreparedStatement st = con.prepareStatement(sql);
+             ResultSet rs = st.executeQuery()) {
 
-			System.err.println("Error in selectAll: " + e.getMessage());
-		}
-		return result;
-	}
+            while (rs.next()) {
+                String id = rs.getString("Id");
+                String title = rs.getString("title");
+                String content = rs.getString("content");
+                String image = rs.getString("Image");
+                Date postDate = rs.getDate("PostedDate");
+                String author = rs.getString("Author");
+                int viewCount = rs.getInt("ViewCount"); // Change to camelCase
+                String categoryId = rs.getString("CategoryId");
+                boolean home = rs.getBoolean("Home");
 
-	public News selectById(News news) {
-		News result = null;
-		String sql = "SELECT * FROM News WHERE Id=?";
+                News news = new News(id, title, content, image, postDate, author, viewCount, categoryId, home);
+                result.add(news);
+            }
+        } catch (Exception e) {
+            System.err.println("Error in selectAll: " + e.getMessage());
+        }
+        return result;
+    }
 
-		try (Connection con = jdbc.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+    // Lấy tin tức theo ID
+    public News selectById(String id) {
+        News result = null;
+        String sql = "SELECT * FROM News WHERE Id = ?";
 
-			st.setString(1, news.getId());
+        try (Connection con = jdbc.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
 
-			try (ResultSet rs = st.executeQuery()) {
-				if (rs.next()) {
-					String Id = rs.getString("Id");
-					String title = rs.getString("title");
-					String content = rs.getString("content");
-					String Image = rs.getString("Image");
-					Date PostDate = rs.getDate("PostDate"); // Ngày Đăng
-					String Author = rs.getString("Author");
-					int ViewCount = rs.getInt("ViewCount");// Số lượt xem
-					String CategoryId = rs.getString("CategoryId");// Mã loại tin (liên kết với bảng CATEGORIES)
-					boolean BIT = rs.getBoolean("BIT");
-					result = new News(Id, title, content, Image, PostDate, Author, ViewCount, CategoryId, BIT);
-				}
-			}
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    String title = rs.getString("title");
+                    String content = rs.getString("content");
+                    String image = rs.getString("Image");
+                    Date postDate = rs.getDate("PostedDate");
+                    String author = rs.getString("Author");
+                    int viewCount = rs.getInt("ViewCount"); // Change to camelCase
+                    String categoryId = rs.getString("CategoryId");
+                    boolean home = rs.getBoolean("Home");
 
-		} catch (SQLException e) {
-			System.err.println("Error in selectById: " + e.getMessage());
-		}
-		return result;
+                    result = new News(id, title, content, image, postDate, author, viewCount, categoryId, home);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error in selectById: " + e.getMessage());
+        }
+        return result;
+    }
 
-	}
-	public int insert(News news) {
-		int result = 0;
-		String sql = "INSERT INTO News (Id, Title, Content, Image, PostedDate, Author, ViewCount, CategoryId, Home) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+    // Chèn tin tức mới
+    public int insert(News news) {
+        int result = 0;
+        String sql = "INSERT INTO News (Id, Title, Content, Image, PostedDate, Author, ViewCount, CategoryId, Home) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		// Sử dụng try-with-resources để tự động đóng Connection và PreparedStatement
-		try (Connection con = jdbc.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+        try (Connection con = jdbc.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, news.getId());
+            st.setString(2, news.getTitle());
+            st.setString(3, news.getContent());
+            st.setString(4, news.getImage());
+            st.setDate(5, new java.sql.Date(news.getPostedDate().getTime()));
+            st.setString(6, news.getAuthor());
+            st.setInt(7, news.getViewCount()); // Change to camelCase
+            st.setString(8, news.getCategoryId());
+            st.setBoolean(9, news.isHome());
 
-			// Thiết lập các tham số cho câu truy vấn
-			st.setString(1, news.getId()); // ID người dùng
-			st.setString(2, news.gettitle()); // Email người dùng
-			st.setString(3, news.getcontent()); // Mật khẩu (chuyển hash mật khẩu nếu cần)
-			st.setString(4, news.getimage()); // Vai trò (admin/nhân viên)
-			st.setDate(5, (java.sql.Date) news.getpostedDate()); // Họ và tên người dùng
-			st.setString(4, news.getauthor()); 
-			st.setInt(6, news.getviewcount()); // Ngày sinh
-			st.setString(7, news.getcategoryId()); // Giới tính
-			st.setBoolean(8, news.ishome()); // Số điện thoại
+            result = st.executeUpdate();
+            System.out.println("Inserted: " + result + " rows.");
+        } catch (SQLException e) {
+            System.err.println("Error in insert: " + e.getMessage());
+        }
+        return result;
+    }
 
-			// Thực thi câu truy vấn và lấy số bản ghi đã chèn
-			result = st.executeUpdate();
+    // Xóa tin tức theo ID
+    public int delete(String id) {
+        int result = 0;
+        String sql = "DELETE FROM News WHERE Id=?";
 
-			// In thông tin câu truy vấn đã thực hiện
-			System.out.println("SQL Query: " + st.toString());
-			System.out.println("Inserted: " + result + " rows.");
+        try (Connection con = jdbc.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            result = st.executeUpdate();
+            System.out.println("Deleted: " + result + " rows.");
+        } catch (SQLException e) {
+            System.err.println("Error in delete: " + e.getMessage());
+        }
 
-		} catch (SQLException e) {
-			// Xử lý ngoại lệ liên quan đến cơ sở dữ liệu
-			System.err.println("Error in insert: " + e.getMessage());
-		} catch (Exception e) {
-			// Xử lý ngoại lệ khác
-			System.err.println("Unexpected error: " + e.getMessage());
-		}
+        return result;
+    }
 
-		return result; // Trả về số bản ghi đã chèn (có thể là 0 nếu thất bại)
-	}
+    // Cập nhật tin tức theo ID
+    public int update(News news) {
+        int result = 0;
+        String sql = "UPDATE News SET Title=?, Content=?, Image=?, PostedDate=?, Author=?, ViewCount=?, CategoryId=?, Home=? WHERE Id=?";
 
+        try (Connection con = jdbc.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            System.out.println("Updating news with ID: " + news.getId());
+
+            st.setString(1, news.getTitle());
+            st.setString(2, news.getContent());
+            st.setString(3, news.getImage());
+            st.setDate(4, new java.sql.Date(news.getPostedDate().getTime()));
+            st.setString(5, news.getAuthor());
+            st.setInt(6, news.getViewCount()); // Change to camelCase
+            st.setString(7, news.getCategoryId());
+            st.setBoolean(8, news.isHome());
+            st.setString(9, news.getId());
+
+            result = st.executeUpdate();
+            System.out.println("Updated: " + result + " rows.");
+        } catch (SQLException e) {
+            System.err.println("Error in update: " + e.getMessage());
+        }
+
+        return result;
+    }
+    
+    
+   
+
+    public List<News> selectByCategory(String categoryId) {
+        List<News> newsList = new ArrayList<>();
+        String sql = "SELECT id, title, content, author, postedDate, image FROM news WHERE categoryId = ?";
+        
+        try (Connection conn = jdbc.getConnection();  // Hàm này cần trả về một kết nối hợp lệ
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             
+            pstmt.setString(1, categoryId);
+            ResultSet rs = pstmt.executeQuery();
+            
+            // Duyệt kết quả trả về từ ResultSet
+            while (rs.next()) {
+                News news = new News();
+                news.setId(rs.getString("id"));
+                news.setTitle(rs.getString("title"));
+                news.setContent(rs.getString("content"));
+                news.setAuthor(rs.getString("author"));
+                news.setPostedDate(rs.getDate("postedDate"));
+                news.setImage(rs.getString("image"));
+                
+                // Thêm đối tượng News vào danh sách
+                newsList.add(news);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return newsList;
+    }
+    
+
+    // Hàm chính để kiểm tra thao tác xóa (test)
+    public static void main(String[] args) {
+        Newsdao newsDao = new Newsdao();
+        
+        // Thử nghiệm xóa
+        String idToDelete = "N02"; // ID bạn muốn xóa
+        System.out.println("Xóa tin tức với ID: " + idToDelete);
+        int deleteResult = newsDao.delete(idToDelete);
+        System.out.println("Số bản ghi đã xóa: " + deleteResult);
+    }
 }

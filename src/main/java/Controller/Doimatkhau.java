@@ -72,7 +72,7 @@ public class Doimatkhau extends HttpServlet {
         }
 
         // Nếu có lỗi hoặc không thành công, chuyển lại trang đổi mật khẩu
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/doimatkhau.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/Login/doimatkhau.jsp");
         rd.forward(request, response);
     }
 }

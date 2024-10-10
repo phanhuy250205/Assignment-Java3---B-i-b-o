@@ -1,6 +1,7 @@
 <%@page import="model.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -177,31 +178,24 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 		</form>
 	</div>
 
-	<div class="image-preview" id="image-preview">
-		<label for="image-preview">Ảnh của bạn:</label> <img
-			id="image-display" src="#" alt="Image preview" style="display: none;">
-	</div>
+	<div class="image-preview">
+            <label>Hình ảnh của bạn:</label>
+            <c:if test="${khachHang.getimage() != null && !khachHang.getimage().isEmpty()}">
+                <!-- Hiển thị ảnh từ đường dẫn trong cơ sở dữ liệu -->
+                <img src="${pageContext.request.contextPath}/uploads/${khachHang.getimage()}" alt="User Image"/>
+
+            </c:if>
+            <c:if test="${khachHang.getimage() == null || khachHang.getimage().isEmpty()}">
+                <p>Không có hình ảnh</p>
+            </c:if>
+        </div>
+        
 
 	<%
         }
     %>
 
-	<script>
-    const imageInput = document.getElementById('image-upload');
-    const imageDisplay = document.getElementById('image-display');
-
-    imageInput?.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                imageDisplay.src = e.target.result;
-                imageDisplay.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-</script>
+	
 
 </body>
 </html>

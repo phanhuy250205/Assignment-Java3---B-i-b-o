@@ -44,14 +44,18 @@
 					<nav id="primary_nav_wrap">
 						<ul>
 							<li class="current-menu-item"><a href="#">Home</a></li>
-							<li><a href="/ASM_JAVA3_PD10267/views/theloai(Thể Thao).jsp">Thể Thao </a></li>
-							<li><a href="/ASM_JAVA3_PD10267/views/theloai(Văn Hóa).jsp">Văn Hóa</a></li>
-							<li><a href="/ASM_JAVA3_PD10267/views/theloai(Pháp Luật) .jsp">Phát Luật</a></li>
+							<li><a href="${pageContext.request.contextPath}/theloaithethao">Thể Thao </a></li>
+							<li><a href="${pageContext.request.contextPath}/theloaiphapluat">Văn Hóa</a></li>
+							<li><a href="${pageContext.request.contextPath}/theloaivanhoa">Phát Luật</a></li>
 							<li><a href="#">Công Cụ Cho nhà phát triển </a>
 								<ul>
-									<li><a href="/ASM_JAVA3_PD10267/views/CURDMANGER.jsp">Phóng viên</a></li>
-									<li><a href="/ASM_JAVA3_PD10267/views/CURDMANGER.jsp">Quản Trị</a></li>
-								</ul></li>
+									<li><a href="${pageContext.request.contextPath}/news/list">Quản Lý Tin tức</a></li>
+									<li><a href="/ASM_JAVA3_PD10267/categories?action=list">Quản Lý Loại tin</a></li>
+									<li><a href="${pageContext.request.contextPath}/Usermanger">Quản Lý Người Dùng</a></li>
+									<li><a href="${pageContext.request.contextPath}/Newsletter">Quản Lý Người Dùng</a></li>
+									
+								</ul>
+							</li>
 						</ul>
 						
 
@@ -75,7 +79,7 @@
 							%>
 							<!-- Nếu người dùng chưa đăng nhập, hiển thị nút đăng nhập -->
 							<a class="btn btn-primary" style="white-space: nowrap;"
-								href="/ASM_JAVA3_PD10267/views/dangnhap.jsp"> Đăng nhập </a>
+								href="/ASM_JAVA3_PD10267/views/Login/dangnhap.jsp"> Đăng nhập </a>
 							<%
 							} else {
 							%>
@@ -87,9 +91,9 @@
 								</a>
 									<ul class="dropdown-menu">
 										<li><a class="dropdown-item" href="#">Thông báo</a></li>
-										<li><a class="dropdown-item" href="/ASM_JAVA3_PD10267/views/Capnhapthonghtin.jsp">Thay
+										<li><a class="dropdown-item" href="/ASM_JAVA3_PD10267/views/Login/Capnhapthonghtin.jsp">Thay
 												đổi thông tin</a></li>
-										<li><a class="dropdown-item" href="/ASM_JAVA3_PD10267/views/doimatkhau.jsp">Đổi
+										<li><a class="dropdown-item" href="/ASM_JAVA3_PD10267/views/Login/doimatkhau.jsp">Đổi
 												mật khẩu</a></li>
 										<li><hr class="dropdown-divider"></li>
 										<li><a class="dropdown-item" href="out">Thoát

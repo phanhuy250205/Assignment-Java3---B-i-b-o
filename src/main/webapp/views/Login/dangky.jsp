@@ -171,6 +171,7 @@ body {
         String gender = request.getAttribute("Gender") != null ? request.getAttribute("Gender").toString() : "";
         String mobile = request.getAttribute("Mobile") != null ? request.getAttribute("Mobile").toString() : "";
         
+        
     %>
 
     <form action="http://localhost:8080/ASM_JAVA3_PD10267/Signup" id="msform" method="POST" enctype="multipart/form-data">
@@ -210,7 +211,7 @@ body {
                 <option value="Khác" <%=(gender.equals("Khác")) ? "selected" : "" %>>Khác</option>
             </select>
             <input type="text" name="mobile" placeholder="Mobile" value="<%= mobile %>" required />
-            <input type="file" name="image"  accept="image/*"   />
+            <input type="file" name="image" id="image">
             <input type="submit" name="submit" class="action-button"  value="Submit" />
         </fieldset>
     </form>

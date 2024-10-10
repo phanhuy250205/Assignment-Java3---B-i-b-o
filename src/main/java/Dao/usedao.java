@@ -32,8 +32,9 @@ public class usedao {
 				boolean gender = rs.getBoolean("Gender");
 				String mobile = rs.getString("Mobile");
 				boolean role = rs.getBoolean("Role");
+				String image = rs.getString("image");
 
-				Users user = new Users(id, email, password, role, fullname, birthday, gender, mobile, mobile);
+				Users user = new Users(id, email, password, role, fullname, birthday, gender, mobile, image);
 				results.add(user);
 			}
 
@@ -63,8 +64,9 @@ public class usedao {
 					boolean gender = rs.getBoolean("Gender");
 					String mobile = rs.getString("Mobile");
 					boolean role = rs.getBoolean("Role");
+					String image = rs.getString("image");
 
-					result = new Users(id, email, password, role, fullname, birthday, gender, mobile, mobile);
+					result = new Users(id, email, password, role, fullname, birthday, gender, mobile, image);
 				}
 			}
 
@@ -94,8 +96,9 @@ public class usedao {
 					boolean gender = rs.getBoolean("Gender");
 					String mobile = rs.getString("Mobile");
 					boolean role = rs.getBoolean("Role");
+					String image = rs.getString("image");
 
-					result = new Users(id, email, password, role, fullname, birthday, gender, mobile, mobile);
+					result = new Users(id, email, password, role, fullname, birthday, gender, mobile, image);
 				}
 			}
 
@@ -107,39 +110,43 @@ public class usedao {
 	}
 
 	public int insert(Users user) {
-		int result = 0;
-		String sql = "INSERT INTO Users (Id, Email, Password, Role, Fullname, Birthday, Gender, Mobile) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	    int result = 0;
+	    String sql = "INSERT INTO Users (Id, Email, Password, Role, Fullname, Birthday, Gender, Mobile, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		// Sử dụng try-with-resources để tự động đóng Connection và PreparedStatement
-		try (Connection con = jdbc.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+	    // Sử dụng try-with-resources để tự động đóng Connection và PreparedStatement
+	    try (Connection con = jdbc.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
 
-			// Thiết lập các tham số cho câu truy vấn
-			st.setString(1, user.getId()); // ID người dùng
-			st.setString(2, user.getemail()); // Email người dùng
-			st.setString(3, user.getpassword()); // Mật khẩu (chuyển hash mật khẩu nếu cần)
-			st.setBoolean(4, user.isRole()); // Vai trò (admin/nhân viên)
-			st.setString(5, user.getfullname()); // Họ và tên người dùng
-			st.setDate(6, new java.sql.Date(user.getbirthday().getTime())); // Ngày sinh
-			st.setBoolean(7, user.isgender()); // Giới tính
-			st.setString(8, user.getmobile()); // Số điện thoại
+	        // Thiết lập các tham số cho câu truy vấn
+	        st.setString(1, user.getId()); // ID người dùng
+	        st.setString(2, user.getemail()); // Email người dùng
+	        st.setString(3, user.getpassword()); // Mật khẩu (chuyển hash mật khẩu nếu cần)
+	        st.setBoolean(4, user.isRole()); // Vai trò (admin/nhân viên)
+	        st.setString(5, user.getfullname()); // Họ và tên người dùng
+	        st.setDate(6, new java.sql.Date(user.getbirthday().getTime())); // Ngày sinh
+	        st.setBoolean(7, user.isgender()); // Giới tính
+	        st.setString(8, user.getmobile()); // Số điện thoại
+	        st.setString(9, user.getimage());
+	        
+	        
 
-			// Thực thi câu truy vấn và lấy số bản ghi đã chèn
-			result = st.executeUpdate();
+	        // Thực thi câu truy vấn và lấy số bản ghi đã chèn
+	        result = st.executeUpdate();
 
-			// In thông tin câu truy vấn đã thực hiện
-			System.out.println("SQL Query: " + st.toString());
-			System.out.println("Inserted: " + result + " rows.");
+	        // In thông tin câu truy vấn đã thực hiện
+	        System.out.println("SQL Query: " + st.toString());
+	        System.out.println("Inserted: " + result + " rows.");
 
-		} catch (SQLException e) {
-			// Xử lý ngoại lệ liên quan đến cơ sở dữ liệu
-			System.err.println("Error in insert: " + e.getMessage());
-		} catch (Exception e) {
-			// Xử lý ngoại lệ khác
-			System.err.println("Unexpected error: " + e.getMessage());
-		}
+	    } catch (SQLException e) {
+	        // Xử lý ngoại lệ liên quan đến cơ sở dữ liệu
+	        System.err.println("Error in insert: " + e.getMessage());
+	    } catch (Exception e) {
+	        // Xử lý ngoại lệ khác
+	        System.err.println("Unexpected error: " + e.getMessage());
+	    }
 
-		return result; // Trả về số bản ghi đã chèn (có thể là 0 nếu thất bại)
+	    return result; // Trả về số bản ghi đã chèn (có thể là 0 nếu thất bại)
 	}
+
 
 	public int delete(Users user) {
 		int result = 0;
@@ -160,7 +167,7 @@ public class usedao {
 
 	public int update(Users user) {
 		int result = 0;
-		String sql = "UPDATE Users SET Email=?, password=?, Role=?, Fullname=?, Birthday=?, Gender=?, Mobile=? WHERE Id=?";
+		String sql = "UPDATE Users SET Email=?, password=?, Role=?, Fullname=?, Birthday=?, Gender=?, Mobile=? , image = ? WHERE Id=?";
 
 		try (Connection con = jdbc.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
 
@@ -171,7 +178,9 @@ public class usedao {
 			st.setDate(5, new Date(user.getbirthday().getTime()));
 			st.setBoolean(6, user.isgender());
 			st.setString(7, user.getmobile());
-			st.setString(8, user.getId());
+			st.setString(8, user.getimage());
+			st.setString(9, user.getId());
+			
 
 			result = st.executeUpdate();
 			System.out.println("Updated: " + result + " rows.");
@@ -185,7 +194,7 @@ public class usedao {
 	
 	public int updateInfo(Users user) {
 	    int result = 0;
-	    String sql = "UPDATE Users SET Email=?, Fullname=?, Birthday=?, Gender=?, Mobile=? WHERE Id=?";
+	    String sql = "UPDATE Users SET Email=?, Fullname=?, Birthday=?, Gender=?, Mobile=?  WHERE Id=?";
 
 	    try (Connection con = jdbc.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
 	        // Cài đặt tham số cho câu lệnh SQL
@@ -194,6 +203,7 @@ public class usedao {
 	        st.setDate(3, new java.sql.Date(user.getbirthday().getTime())); // Ngày sinh ở vị trí 3
 	        st.setBoolean(4, user.isgender()); // Giới tính ở vị trí 4
 	        st.setString(5, user.getmobile()); // Số điện thoại ở vị trí 5
+	        
 	        st.setString(6, user.getId()); // ID người dùng ở vị trí 6
 
 	        // Thực thi câu lệnh cập nhật
