@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import model.CATEGORIES;
 import model.News;
 import Dao.Newsdao;
 import org.apache.commons.beanutils.BeanUtils;
@@ -16,6 +17,7 @@ import org.apache.commons.beanutils.converters.DateConverter;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +49,11 @@ public class Newss extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	// Lấy danh sách danh mục
+        List<CATEGORIES> categories = newsdao.selectAllCatty();
+        
+        // Đặt danh sách vào request attribute để JSP có thể truy cập
+        request.setAttribute("categories", categories);
         String path = request.getServletPath();
         logger.info("GET request at path: " + path);
 

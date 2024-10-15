@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${news != null ? news.title : "Không tìm thấy bài viết"}</title>
     <style>
-    body {
+   /* Base styles */
+body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
@@ -17,36 +18,40 @@
     padding: 20px;
 }
 
+/* Styling for the main container */
 .container {
-    max-width: 1200px; /* Tăng độ rộng container để bài viết rộng hơn */
+    max-width: 1200px;
     margin: 0 auto;
     background-color: #fff;
-    padding: 30px; /* Tăng padding để có khoảng cách thoải mái hơn */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Tăng bóng đổ cho hiệu ứng 3D */
-    border-radius: 10px; /* Tăng độ bo tròn góc */
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
+/* Header styles */
 h1 {
     text-align: center;
     color: #333;
-    margin-bottom: 30px; /* Tăng khoảng cách phía dưới tiêu đề */
-    font-size: 3em; /* Tăng kích thước tiêu đề */
+    margin-bottom: 30px;
+    font-size: 1.3em;
     word-break: break-word;
     overflow-wrap: break-word;
 }
 
+/* Image styling */
 img {
     display: block;
-   width: 50%;
+    width: 50%;
     height: auto;
     margin: 20px auto;
     border-radius: 10px;
     object-fit: cover;
 }
 
+/* Paragraph styles */
 p {
-    font-size: 1.0em; /* Tăng kích thước chữ */
-    margin-bottom: 20px; /* Tăng khoảng cách giữa các đoạn văn */
+    font-size: 0.9em;
+    margin-bottom: 20px;
     line-height: 1.8;
     text-align: justify;
     color: #555;
@@ -54,8 +59,9 @@ p {
     overflow-wrap: break-word;
 }
 
+/* Meta information styling */
 .meta-info {
-    font-size: 1em; /* Tăng kích thước thông tin meta */
+    font-size: 1em;
     color: #888;
     margin-bottom: 20px;
 }
@@ -64,40 +70,42 @@ p {
     color: #333;
 }
 
+/* Error message styling */
 .error {
     text-align: center;
     color: red;
     font-size: 1.5em;
 }
 
+/* Navigation styling */
 nav {
-	text-align: center;
-	background-color: #f9f9f9;
-	padding: 15px 0;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 15px 0;
 }
 
 nav ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
-	display: inline-block;
-	margin-right: 20px;
+    display: inline-block;
+    margin-right: 20px;
 }
 
 nav ul li a {
-	color: black;
-	text-decoration: none;
-	padding: 10px 15px;
-	display: inline-block;
-	font-size: 1.2em; /* Tăng kích thước chữ trong menu */
-	transition: color 0.3s ease;
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-	color: #4a90e2;
+    color: #4a90e2;
 }
 
     </style>
