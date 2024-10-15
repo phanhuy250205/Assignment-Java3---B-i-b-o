@@ -1,3 +1,4 @@
+<%@page import="model.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -122,6 +123,12 @@ button:active {
     overflow-wrap: break-word; /* Hỗ trợ cho các trình duyệt khác */
     max-width: 100%; /* Đảm bảo không vượt quá kích thước thẻ chứa */
     white-space: normal; /* Cho phép văn bản xuống dòng */
+     display: -webkit-box;
+    -webkit-line-clamp: 4; /* Hiển thị tối đa 4 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Thêm dấu '...' nếu nội dung quá dài */
+    white-space: normal; /* Đảm bảo văn bản xuống dòng */
 }
 
 .news-card strong {
@@ -130,7 +137,7 @@ button:active {
 }
 
 button {
-    background-color: #28a745;
+    background-color: #1a4fc5;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -162,6 +169,7 @@ button:active {
     margin: 0 5px;
 }
 
+}
 
 @media (max-width: 768px) {
     .news-card-container {
@@ -187,11 +195,54 @@ button:active {
         margin-bottom: 10px;
     }
 }
+nav {
+    text-align: center; /* Căn giữa các mục trong menu */
+    background-color: #f9f9f9; /* Đặt màu nền cho thanh điều hướng */
+    padding: 15px 0; /* Thêm khoảng cách phía trên và dưới */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block; /* Hiển thị các mục trong cùng một dòng */
+    margin-right: 20px; /* Thêm khoảng cách giữa các mục */
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    font-size: 1em;
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
+}
+
+nav ul li a:hover {
+    color: #4a90e2; /* Thay đổi màu khi di chuột vào */
+}
 
 
 </style>
 </head>
 <body>
+
+	<nav>
+        <ul>
+            <li>
+                <a href="/ASM_JAVA3_PD10267/views/index.jsp">Trang Chủ</a>
+            </li>
+            <li>
+                <a href="about.jsp">Giới Thiệu</a>
+            </li>
+            <li>
+                <a href="contact.jsp">Liên Hệ</a>
+            </li>
+        </ul>
+    </nav>
     <div class="container">
         <h2>Quản lý tin tức</h2>
         <!-- Hiển thị thông báo thành công hoặc lỗi -->
@@ -252,7 +303,7 @@ button:active {
                             <p>Chưa có hình ảnh</p>
                         </c:if>
                         
-                        <p><strong>Nội dung:</strong> ${news.content}</p>
+                        <p><strong class = "content">Nội dung:</strong> ${news.content}</p>
                         <p><strong>Ngày đăng:</strong> ${news.postedDate}</p>
                         <p><strong>Tác giả:</strong> ${news.author}</p>
                         <p><strong>Lượt xem:</strong> ${news.viewCount}</p>

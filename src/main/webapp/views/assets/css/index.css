@@ -71,12 +71,14 @@
   margin-bottom: 15px;
   flex-grow: 1;
 }
+
 .inner-info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
   }
+ 
   .inner-info h3 a:hover{
     color: #007bff;
   }
@@ -240,6 +242,7 @@
   font-size: 16px;
   font-weight: 500;
   transition: all 0.3s ease;
+  margin-right: -11px;
 }
 
 #primary_nav_wrap ul li a:hover, 
@@ -281,6 +284,7 @@
 #primary_nav_wrap ul ul li a:hover {
   background-color: #555;
 }
+
 
 /* Nút Đăng Nhập */
 .btn.btn-primary {
@@ -371,4 +375,49 @@
 
 .comnet p {
   margin-bottom: 10px;
+}
+body {
+    font-family: ui-monospace;
+}
+.me-2 {
+	margin-right: 0.5rem !important;
+	margin-top: -1px;
+	padding: 12px 2px;
+}
+
+.hidden {
+	display: none;
+}
+
+.disabled-link {
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 16px;
+	color: #666; /* Màu xám để phân biệt */
+	background-color: #333; /* Nền đậm giống các liên kết khác */
+	cursor: not-allowed; /* Con trỏ chuột hiển thị như không thể nhấn */
+	text-decoration: none;
+	margin-right: 15px; /* Khoảng cách giữa các mục */
+	border-radius: 5px; /* Bo góc giống các liên kết khác */
+	white-space: nowrap; /* Giữ liên kết trên cùng một dòng */
+}
+
+.inner-position {
+	word-wrap: break-word; /* Tự động xuống dòng nếu có từ dài */
+	white-space: normal; /* Đảm bảo nội dung tự động xuống dòng */
+	overflow-wrap: break-word; /* Đảm bảo từ dài không bị tràn */
+	display: -webkit-box;
+	/* Sử dụng để cắt đoạn văn sau số dòng giới hạn */
+	-webkit-line-clamp: 4; /* Số lượng dòng tối đa (ví dụ: 4 dòng) */
+	-webkit-box-orient: vertical;
+	overflow: hidden; /* Ẩn phần nội dung vượt quá số dòng */
+	text-overflow: ellipsis; /* Hiển thị dấu "..." nếu nội dung quá dài */
+}
+
+#primary_nav_wrap ul ul li a {
+	background-color: #d5cece;
+}
+a{
+	   list-style-type: none;
+    text-decoration: none;
 }

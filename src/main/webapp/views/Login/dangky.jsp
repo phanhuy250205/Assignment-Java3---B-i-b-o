@@ -65,7 +65,7 @@ body {
 
 #msform .action-button {
 	width: 100px;
-	background: #27AE60;
+	background: #1a4fc5;
 	font-weight: bold;
 	color: white;
 	border: none;
@@ -76,7 +76,7 @@ body {
 }
 
 #msform .action-button:hover {
-	background: #219150; /* Đổi màu khi hover */
+	background: #1a4fc599; /* Đổi màu khi hover */
 }
 
 .fs-title {
@@ -192,8 +192,8 @@ body {
             <span id="password-error" class="error"></span>
             <select name="role" class="role" id="Role" required>
                 <option value="" disabled <%=(role.isEmpty() ? "selected" : "")%>>Select Role</option>
-                <option value="1" <%=(role.equals("Quản Trị")) ? "selected" : "" %>>Quản Trị</option>
-                <option value="0" <%=(role.equals("Admin")) ? "selected" : "" %>>Admin</option>
+                <option value="0" <%=(role.equals("Quản Trị")) ? "selected" : "" %>>Quản Trị</option>
+                <option value="1" <%=(role.equals("Admin")) ? "selected" : "" %>>Admin</option>
                 <option value="2" <%=(role.equals("Khác")) ? "selected" : "" %>>Khác</option>
             </select>
             <input type="button" name="next" class="next action-button" value="Next" onclick="validatePassword()" />

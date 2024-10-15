@@ -30,6 +30,9 @@ public class Usermanger extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		List<Users> userList = userDao.selectAll(); // This method needs to be implemented in the UserDao to fetch users
         request.setAttribute("userList", userList);
 

@@ -79,12 +79,12 @@ INSERT INTO NEWSLETTERS (Email, Enabled) VALUES
 -- WHERE Id = ?
 
 -- INSERT INTO Users (Id, password, Fullname, Birthday, Gender, Mobile, Email, Role)
+SELECT * FROM NEWSLETTERS 
 
+ALTER TABLE Users
+ADD image VARCHAR(Max);
 
--- ALTER TABLE Users
--- ADD image VARCHAR(Max);
-
-SELECT * from Users  
+SELECT * from News  
 -- SELECT * FROM Users WHERE Email='admin@example.com'
 
 
@@ -97,10 +97,40 @@ delete from Users where  Id = '1728163706503_221'
 delete from Users where  Id = '1728165173140_36'
 delete from Users where  Id = '1728163840161_537'
 -- select * from News
-select * from News
+SELECT * FROM Users
 
 DELETE FROM News WHERE Id='756ebe36-ffb2-4700-86fe-80f1409415e4'
 
 Update News 
 set title = 'Phan Huy'
 where Id = 'N03'
+
+SELECT * from  News WHERE CategoryId = 'C03'
+SELECT * FROM news WHERE categoryId = 'C01'
+
+SELECT * FROM News WHERE home = '1'
+
+SELECT  Id , Name from CATEGORIES
+Go
+
+--// proc 5 bản tin mới nhất
+CREATE PROCEDURE GetLatestNews
+AS
+BEGIN
+    SELECT TOP 5 n.*, c.Id AS CategoryId, c.Name AS CategoryName 
+    FROM NEWS n
+    JOIN CATEGORIES c ON n.CategoryId = c.Id
+    ORDER BY n.PostedDate DESC;
+END;
+GO
+--proc 5 bản tin nhiều lượt xem nhất
+CREATE PROCEDURE GetTopViewedNews
+AS
+BEGIN
+    SELECT TOP 5 n.*, c.Id AS CategoryId, c.Name AS CategoryName 
+    FROM NEWS n
+    JOIN CATEGORIES c ON n.CategoryId = c.Id
+    ORDER BY n.ViewCount DESC;
+END;
+
+

@@ -61,7 +61,7 @@ public class Category extends HttpServlet {
             throws ServletException, IOException {
         ArrayList<CATEGORIES> categoriesList = categoryDao.selectAll();
         request.setAttribute("categoriesList", categoriesList);
-        request.getRequestDispatcher("/views/manage_categories.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/Crub/manage_categories.jsp").forward(request, response);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
@@ -74,7 +74,7 @@ public class Category extends HttpServlet {
         String id = request.getParameter("id");
         CATEGORIES category = categoryDao.selectById(id);
         request.setAttribute("category", category);
-        request.getRequestDispatcher("/views/manage_categories.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/Crub/manage_categories.jsp").forward(request, response);
     }
 
     private void deleteCategory(HttpServletRequest request, HttpServletResponse response)
@@ -102,7 +102,7 @@ public class Category extends HttpServlet {
         CATEGORIES existingCategory = categoryDao.selectById(id);
         if (existingCategory != null) {
             request.setAttribute("errorMessage", "ID đã tồn tại, vui lòng nhập ID khác.");
-            request.getRequestDispatcher("/views/manage_categories.jsp").forward(request, response);
+            request.getRequestDispatcher("/views/Crub/manage_categories.jsp").forward(request, response);
         } else {
             // Thực hiện thêm mới loại tin nếu ID chưa tồn tại
             CATEGORIES category = new CATEGORIES(id, name);

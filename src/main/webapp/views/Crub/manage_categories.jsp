@@ -71,7 +71,7 @@
             width: 100%;
             padding: 10px;
             color: white;
-            background-color: #0056b3;
+            background-color: #1a4fc5;
             border: none;
             border-radius: 4px;
             cursor: pointer;

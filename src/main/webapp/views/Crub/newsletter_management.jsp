@@ -48,7 +48,7 @@
         button {
             display: inline-block;
             padding: 12px 20px;
-            background-color: #1abc9c;
+            background-color: #1a4fc5;
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -118,6 +118,36 @@
         .edit-button:hover {
             background-color: #2980b9;
         }
+        nav {
+    text-align: center; /* Căn giữa các mục trong menu */
+    background-color: #f9f9f9; /* Đặt màu nền cho thanh điều hướng */
+    padding: 15px 0; /* Thêm khoảng cách phía trên và dưới */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block; /* Hiển thị các mục trong cùng một dòng */
+    margin-right: 20px; /* Thêm khoảng cách giữa các mục */
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    font-size: 1em;
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
+}
+
+nav ul li a:hover {
+    color: #4a90e2; /* Thay đổi màu khi di chuột vào */
+}
+        
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -194,7 +224,19 @@
     </script>
 </head>
 <body>
-
+<nav>
+        <ul>
+            <li>
+                <a href="/ASM_JAVA3_PD10267/views/index.jsp">Trang Chủ</a>
+            </li>
+            <li>
+                <a href="about.jsp">Giới Thiệu</a>
+            </li>
+            <li>
+                <a href="contact.jsp">Liên Hệ</a>
+            </li>
+        </ul>
+    </nav>
     <h1>Quản lý Email và Trạng thái</h1>
 
     <!-- Form để thêm hoặc cập nhật Gmail và trạng thái -->

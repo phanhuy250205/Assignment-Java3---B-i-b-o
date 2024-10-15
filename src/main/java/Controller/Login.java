@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
         } else {
             // Xác thực không thành công
             request.setAttribute("baoLoi", "Tên đăng nhập hoặc mật khẩu không đúng!");
-            url = "/views/dangnhap.jsp"; // Chuyển hướng về trang đăng nhập
+            url = "/views/Login/dangnhap.jsp"; // Chuyển hướng về trang đăng nhập
         }
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher(url);

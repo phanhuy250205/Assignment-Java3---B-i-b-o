@@ -8,110 +8,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Văn Hóa</title>
+    <link rel="stylesheet"
+	href="/ASM_JAVA3_PD10267/views/assets/css/theloai.css">
    
 </head>
-<style>
-.main {
-    display: flex;
-    flex-wrap: wrap; /* Đảm bảo rằng các bài viết tự động xuống dòng */
-    justify-content: space-between; /* Phân bố đều các bài viết */
-    gap: 15px; /* Khoảng cách giữa các bài viết */
-    padding: 20px;
-    box-sizing: border-box;
-}
 
-.slidebar-1 {
-
-    padding: 10px; /* Giảm padding để bố cục gọn hơn */
-    border-radius: 8px;
-    box-shadow: var(--box-shadow);
-    width: calc(33.333% - 15px); /* Đảm bảo 3 bài trên một hàng với khoảng cách 15px */
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-    margin-bottom: 20px; /* Thêm khoảng cách giữa các hàng */
-}
-
-.slidebar-1:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Image styles */
-.inner-logo img {
-    width: 100%;
-    height: 120px; /* Giảm chiều cao hình ảnh */
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-/* Content styles */
-.inner-content h1 {
-    font-size: 1em; /* Giảm kích thước tiêu đề */
-    color: var(--main-color);
-    margin-bottom: 8px;
-}
-
-.inner-content p {
-   font-size: 0.8em; /* Giảm kích thước đoạn văn */
-    color: #666;
-    line-height: 1.4; /* Điều chỉnh khoảng cách dòng */
-    white-space: normal; /* Đảm bảo đoạn văn tự động xuống dòng */
-    word-wrap: break-word; /* Đảm bảo từ dài không tràn */
-    word-break: break-word; /* Đảm bảo từ dài không tràn */
-    margin-bottom: 8px;
-    
-    display: -webkit-box;
-    -webkit-line-clamp: 4; /* Hiển thị tối đa 4 hàng */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    }
-
-/* Responsive styles for medium screens */
-@media (max-width: 768px) {
-    .slidebar-1 {
-        width: calc(50% - 15px); /* 2 bài trên một hàng cho màn hình vừa */
-    }
-}
-
-/* Responsive styles for small screens */
-@media (max-width: 480px) {
-    .slidebar-1 {
-        width: 100%; /* 1 bài trên một hàng cho màn hình nhỏ */
-    }
-}
-nav {
-    text-align: center; /* Căn giữa các mục trong menu */
-    background-color: #f9f9f9; /* Đặt màu nền cho thanh điều hướng */
-    padding: 15px 0; /* Thêm khoảng cách phía trên và dưới */
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline-block; /* Hiển thị các mục trong cùng một dòng */
-    margin-right: 20px; /* Thêm khoảng cách giữa các mục */
-}
-
-nav ul li a {
-    color: black;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: inline-block;
-    font-size: 1em;
-    transition: color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
-}
-
-nav ul li a:hover {
-    color: #4a90e2; /* Thay đổi màu khi di chuột vào */
-}
-
-</style>
 <body>
 
 <nav>
@@ -151,7 +52,11 @@ nav ul li a:hover {
 
                     </div>
                     <div class="inner-content">
-                        <h1><a href="details.jsp?id=${news.id}">${news.title}</a></h1>
+                        <h1>
+							<a
+								href="${pageContext.request.contextPath}/details?id=${news.id}">
+								${news.title} </a>
+						</h1>
                           <p>${news.content}</p>
                         <p><strong>Tác giả:</strong> ${news.author}</p>
                         <p><strong>Ngày đăng:</strong> <fmt:formatDate value="${news.postedDate}" pattern="dd-MM-yyyy"/></p>

@@ -139,4 +139,17 @@
     <servlet-name>theloaivanhoa</servlet-name>
     <url-pattern>/theloaivanhoa</url-pattern>
   </servlet-mapping>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <servlet>
+    <description></description>
+    <display-name>Chitiet</display-name>
+    <servlet-name>Chitiet</servlet-name>
+    <servlet-class>Controller.Chitiet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Chitiet</servlet-name>
+    <url-pattern>/Chitiet</url-pattern>
+  </servlet-mapping>
 </web-app>

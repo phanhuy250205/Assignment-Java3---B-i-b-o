@@ -47,11 +47,6 @@ public class Newss extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	
-    	
-    	
-    	
-    	
         String path = request.getServletPath();
         logger.info("GET request at path: " + path);
 
@@ -60,14 +55,16 @@ public class Newss extends HttpServlet {
                 handleEditRequest(request, response);
             } else if (path.equals("/news/delete")) {
                 handleDeleteRequest(request, response);
-                return;
+                return; // Dừng xử lý sau khi xóa
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error during GET request processing", e);
             request.setAttribute("errorMessage", "Có lỗi xảy ra: " + e.getMessage());
         }
 
-        forwardToManagePage(request, response);
+        if (!response.isCommitted()) {
+            forwardToManagePage(request, response);
+        }
     }
 
     @Override
@@ -99,7 +96,7 @@ public class Newss extends HttpServlet {
                 filePart.write(uploadPath + File.separator + fileName);
                 form.setImage(fileName); // Gán tên tệp vào đối tượng News
             }
-            String targetPage = "/news/list"; // Mặc định chuyển đến danh sách tin tức
+
             if (path.equals("/news/insert")) {
                 // Tạo ID duy nhất tự động
                 String generatedId = UUID.randomUUID().toString();
@@ -108,7 +105,7 @@ public class Newss extends HttpServlet {
                 logger.info("Inserting new news with ID: " + generatedId);
                 newsdao.insert(form);
                 request.getSession().setAttribute("successMessage", "Thêm mới thành công!");
-               
+
             } else if (path.equals("/news/update")) {
                 String id = request.getParameter("id");
                 if (id != null && !id.isEmpty()) {
@@ -122,10 +119,13 @@ public class Newss extends HttpServlet {
             }
 
             response.sendRedirect(request.getContextPath() + "/news/list");
+            return; // Dừng lại sau khi redirect
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error during POST request processing", e);
             request.setAttribute("errorMessage", "Có lỗi xảy ra trong quá trình xử lý: " + e.getMessage());
-            forwardToManagePage(request, response);
+            if (!response.isCommitted()) {
+                forwardToManagePage(request, response);
+            }
         }
     }
 
@@ -145,7 +145,10 @@ public class Newss extends HttpServlet {
             request.setAttribute("errorMessage", "ID không hợp lệ.");
             logger.warning("Invalid ID for editing news.");
         }
-        forwardToManagePage(request, response);
+
+        if (!response.isCommitted()) {
+            forwardToManagePage(request, response);
+        }
     }
 
     private void handleDeleteRequest(HttpServletRequest request, HttpServletResponse response)
@@ -169,7 +172,9 @@ public class Newss extends HttpServlet {
             request.setAttribute("errorMessage", "ID không hợp lệ để xóa.");
             logger.warning("Delete failed - Invalid ID");
         }
+
         response.sendRedirect(request.getContextPath() + "/news/list");
+        return;
     }
 
     private void forwardToManagePage(HttpServletRequest request, HttpServletResponse response)
@@ -177,7 +182,9 @@ public class Newss extends HttpServlet {
         ArrayList<News> newsList = newsdao.selectAll();
         request.setAttribute("newsList", newsList);
         logger.info("Forwarding to manage page with newsList size: " + newsList.size());
-        request.getRequestDispatcher("/views/Crub/CURDMANGER.jsp").forward(request, response);
+        if (!response.isCommitted()) {
+            request.getRequestDispatcher("/views/Crub/CURDMANGER.jsp").forward(request, response);
+        }
     }
 
     private String extractFileName(Part part) {

@@ -7,7 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Văn Hóa</title>
+    <title>Thể Thao</title>
+    <link rel="stylesheet"
+	href="/ASM_JAVA3_PD10267/views/assets/css/theloai.css">
    
 </head>
 <style>
@@ -53,20 +55,20 @@
 }
 
 .inner-content p {
-   font-size: 0.8em; /* Giảm kích thước đoạn văn */
+    font-size: 0.8em; /* Giảm kích thước đoạn văn */
     color: #666;
-    line-height: 1.4; /* Điều chỉnh khoảng cách dòng */
-    white-space: normal; /* Đảm bảo đoạn văn tự động xuống dòng */
-    word-wrap: break-word; /* Đảm bảo từ dài không tràn */
-    word-break: break-word; /* Đảm bảo từ dài không tràn */
+    line-height: 1.4;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
     margin-bottom: 8px;
     
-    display: -webkit-box;
-    -webkit-line-clamp: 4; /* Hiển thị tối đa 4 hàng */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    }
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important; /* Hiển thị tối đa 4 hàng */
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
 
 /* Responsive styles for medium screens */
 @media (max-width: 768px) {
@@ -151,7 +153,11 @@ nav ul li a:hover {
 
                     </div>
                     <div class="inner-content">
-                        <h1><a href="details.jsp?id=${news.id}">${news.title}</a></h1>
+                        <h1>
+							<a
+								href="${pageContext.request.contextPath}/details?id=${news.id}">
+								${news.title} </a>
+						</h1>
                           <p>${news.content}</p>
                         <p><strong>Tác giả:</strong> ${news.author}</p>
                         <p><strong>Ngày đăng:</strong> <fmt:formatDate value="${news.postedDate}" pattern="dd-MM-yyyy"/></p>
